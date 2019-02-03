@@ -53,9 +53,26 @@ namespace CsvWebApiSwagger.Controllers
         /// </summary>
         /// <param name="value"></param>
         [HttpPost]
-        public void Post([FromBody]Job value)
+        [ProducesResponseType(typeof(Job), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Job), (int)HttpStatusCode.Conflict)]
+        public IActionResult Post([FromBody]Job request)
         {
-            Jobs.Add(value);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var job = Jobs.FirstOrDefault(j => j.Id == request.Id);
+
+            if (job == null)
+            {
+                return Conflict($"Job with Id {request.Id} exists");
+            }
+
+
+            Jobs.Add(request);
+
+            return Ok(request);
         }
 
         /// <summary>
@@ -64,13 +81,26 @@ namespace CsvWebApiSwagger.Controllers
         /// <param name="id">id of a string</param>
         /// <param name="value">value of the string</param>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Job value)
+        [ProducesResponseType(typeof(Job), (int)HttpStatusCode.OK)]
+        public IActionResult Put(int id, [FromBody]Job value)
         {
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var job = Jobs.First(j => j.Id == id);
             job.Description = value.Description;
             job.Level = value.Level;
             job.Title = value.Title;
             job.Requirements = value.Requirements;
+
+            return Ok(value);
         }
 
         /// <summary>
@@ -78,10 +108,25 @@ namespace CsvWebApiSwagger.Controllers
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.Conflict)]
+        public IActionResult Delete(int id)
         {
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+
             var job = Jobs.First(j => j.Id == id);
+
+            if (job == null)
+            {
+                return Conflict($"Job with Id {id} does not exist");
+            }
+
             Jobs.Remove(job);
+            return Ok();
         }
     }
 }
