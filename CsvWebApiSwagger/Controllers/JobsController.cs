@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using CsvWebApiSwagger.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +19,10 @@ namespace CsvWebApiSwagger.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<Job> Get()
+        [ProducesResponseType(typeof(IEnumerable<Job>), (int)HttpStatusCode.OK)]
+        public IActionResult Get()
         {
-            return Jobs;
+            return Ok(Jobs);
         }
 
         /// <summary>
@@ -29,9 +31,21 @@ namespace CsvWebApiSwagger.Controllers
         /// <param name="id">any id</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public Job Get(int id)
+        [ProducesResponseType(typeof(IEnumerable<Job>), (int)HttpStatusCode.OK)]
+        public IActionResult Get(int id)
         {
-            return Jobs.First(j => j.Id == id);
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+
+            var job = Jobs.FirstOrDefault(j => j.Id == id);
+
+            if (job == null)
+            {
+                return NotFound($"Job with Id not found: {id}");
+            }
+            return Ok(job);
         }
 
         /// <summary>
