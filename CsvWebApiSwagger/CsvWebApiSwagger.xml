@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CsvWebApiSwagger</name>
+    </assembly>
+    <members>
+        <member name="T:CsvWebApiSwagger.Controllers.JobsController">
+            <summary>
+            Jobs API for CRUD job 
+            </summary>
+        </member>
+        <member name="M:CsvWebApiSwagger.Controllers.JobsController.Get">
+            <summary>
+            Gets all jobs using the API
+            </summary>
+            <returns>Return a list of jobs</returns>
+        </member>
+        <member name="M:CsvWebApiSwagger.Controllers.JobsController.Get(System.Int32)">
+            <summary>
+            get Job using the id
+            </summary>
+            <param name="id">job id</param>
+            <returns>Job for the ID</returns>
+        </member>
+        <member name="M:CsvWebApiSwagger.Controllers.JobsController.Post(CsvWebApiSwagger.Models.Job)">
+            <summary>
+            Creates a new JOB if the ID does not already exist
+            </summary>
+            <param name="job">Job to create</param>
+            <returns>The created JOB</returns>
+        </member>
+        <member name="M:CsvWebApiSwagger.Controllers.JobsController.Put(System.Int32,CsvWebApiSwagger.Models.Job)">
+            <summary>
+            put a string
+            </summary>
+            <param name="id">id of a string</param>
+            <param name="value">value of the string</param>
+        </member>
+        <member name="M:CsvWebApiSwagger.Controllers.JobsController.Delete(System.Int32)">
+            <summary>
+            delete the Job if it is found
+            </summary>
+            <param name="id">job id</param>
+        </member>
+    </members>
+</doc>
