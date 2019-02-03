@@ -9,6 +9,8 @@ using Microsoft.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.Linq;
+using System.Reflection;
+using System;
 
 namespace CsvWebApiSwagger
 {
@@ -45,7 +47,13 @@ namespace CsvWebApiSwagger
                     Title = "CSV TEST API",
                 });
 
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
+
+            
 
             services.AddMvc(options =>
             {

@@ -6,13 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CsvWebApiSwagger.Controllers
 {
+    /// <summary>
+    /// Jobs API for CRUD job 
+    /// </summary>
     [Route("api/[controller]")]
     public class JobsController : Controller
     {
         /// <summary>
-        /// docs for get
+        /// Gets all jobs using the API
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return a list of jobs</returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Job>), (int)HttpStatusCode.OK)]
         public IActionResult Get()
@@ -21,10 +24,10 @@ namespace CsvWebApiSwagger.Controllers
         }
 
         /// <summary>
-        /// get id
+        /// get Job using the id
         /// </summary>
-        /// <param name="id">any id</param>
-        /// <returns></returns>
+        /// <param name="id">job id</param>
+        /// <returns>Job for the ID</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(IEnumerable<Job>), (int)HttpStatusCode.OK)]
         public IActionResult Get(int id)
@@ -44,29 +47,30 @@ namespace CsvWebApiSwagger.Controllers
         }
 
         /// <summary>
-        /// post a string
+        /// Creates a new JOB if the ID does not already exist
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="job">Job to create</param>
+        /// <returns>The created JOB</returns>
         [HttpPost]
         [ProducesResponseType(typeof(Job), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Job), (int)HttpStatusCode.Conflict)]
-        public IActionResult Post([FromBody]Job request)
+        public IActionResult Post([FromBody]Job job)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var job = Jobs.FirstOrDefault(j => j.Id == request.Id);
+            var jobToCreate = Jobs.FirstOrDefault(j => j.Id == job.Id);
 
             if (job != null)
             {
-                return Conflict($"Job with Id {request.Id} exists");
+                return Conflict($"Job with Id {job.Id} exists");
             }
 
-            Jobs.Add(request);
+            Jobs.Add(job);
 
-            return Ok(request);
+            return Ok(job);
         }
 
         /// <summary>
@@ -98,9 +102,9 @@ namespace CsvWebApiSwagger.Controllers
         }
 
         /// <summary>
-        /// delete something
+        /// delete the Job if it is found
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">job id</param>
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
