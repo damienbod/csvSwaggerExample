@@ -59,11 +59,10 @@ namespace CsvWebApiSwagger.Controllers
 
             var job = Jobs.FirstOrDefault(j => j.Id == request.Id);
 
-            if (job == null)
+            if (job != null)
             {
                 return Conflict($"Job with Id {request.Id} exists");
             }
-
 
             Jobs.Add(request);
 
