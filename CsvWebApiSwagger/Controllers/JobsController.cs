@@ -9,11 +9,6 @@ namespace CsvWebApiSwagger.Controllers
     [Route("api/[controller]")]
     public class JobsController : Controller
     {
-        private static List<Job> Jobs = new List<Job>
-        {
-
-        };
-
         /// <summary>
         /// docs for get
         /// </summary>
@@ -128,5 +123,34 @@ namespace CsvWebApiSwagger.Controllers
             Jobs.Remove(job);
             return Ok();
         }
+
+        private static List<Job> Jobs = new List<Job>
+        {
+            new Job
+            {
+                Id = 1,
+                Title = "Senior Software Engineer ASP.NET Core",
+                Description = "knows how to do a stack overflow search",
+                Level = "Level 3",
+                Requirements = "5 years experience using some of the following: ASP.NET Core, ASP.NET, C#, HTML, Javascript, Typescript, SignalR, Azure"
+            },
+            new Job
+            {
+                Id = 2,
+                Title = "Professional Software Engineer ASP.NET Core",
+                Description = "knows how to do a stack overflow search",
+                Level = "Level 2",
+                Requirements = "3 years experience using some of the following: ASP.NET Core, ASP.NET, C#, HTML, Javascript, Typescript, SignalR, Azure"
+            },
+            new Job
+            {
+                Id = 3,
+                Title = "Junior Software Engineer ASP.NET Core",
+                Description = "knows how to do a stack overflow search",
+                Level = "Level 1",
+                Requirements = "knows some of the following: ASP.NET Core, ASP.NET, C#, HTML, Javascript, Typescript, SignalR, Azure, worked in a team"
+            }
+        };
+
     }
 }
