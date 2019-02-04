@@ -49,6 +49,19 @@ namespace CsvWebApiSwagger.Controllers
         /// <summary>
         /// Creates a new JOB if the ID does not already exist
         /// </summary>
+        /// <remarks>
+        /// Sample create Job:
+        ///
+        ///     POST api/Jobs
+        ///     {
+        ///        "id": int id which does not exist,
+        ///        "title": "title of the job",
+        ///        "description": "Description of the job",
+        ///        "level": "level of the job",
+        ///        "requirements": "Requirements of the job",
+        ///     }
+        ///
+        /// </remarks>
         /// <param name="job">Job to create</param>
         /// <returns>The created JOB</returns>
         [HttpPost]
