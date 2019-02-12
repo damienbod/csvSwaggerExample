@@ -1,3 +1,5 @@
 CsvWebApiSwagger/obj
 CsvWebApiSwagger/bin
 .vs
+/ConsoleApiClient/bin/
+/ConsoleApiClient/obj
