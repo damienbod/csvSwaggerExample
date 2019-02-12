@@ -37,13 +37,14 @@ namespace CsvWebApiSwagger.Controllers
                 return BadRequest();
             }
 
-            var job = Jobs.FirstOrDefault(j => j.Id == id);
+            var jobExists = Jobs.Exists(j => j.Id == id);
 
-            if (job == null)
+            if (jobExists == false)
             {
                 return NotFound($"Job with Id not found: {id}");
             }
-            return Ok(job);
+
+            return Ok(Jobs.First(j => j.Id == id));
         }
 
         /// <summary>
@@ -74,9 +75,9 @@ namespace CsvWebApiSwagger.Controllers
                 return BadRequest();
             }
 
-            var jobToCreate = Jobs.FirstOrDefault(j => j.Id == job.Id);
+            var jobAlreadyExists = Jobs.Exists(j => j.Id == job.Id);
 
-            if (job != null)
+            if (jobAlreadyExists == true)
             {
                 return Conflict($"Job with Id {job.Id} exists");
             }

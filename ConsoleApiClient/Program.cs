@@ -17,9 +17,24 @@ namespace ConsoleApiClient
             var clientCsvWebApiSwagger = new ClientCsvWebApiSwagger(
                 "https://localhost:44354/", httpClient);
 
-            // Gets all to-dos from the API
             var all = await clientCsvWebApiSwagger.GetAllAsync();
 
+            Console.WriteLine($"amount of jobs: {all.Count}");
+
+            Console.WriteLine($"Create job: Id = 2340");
+
+            var job = await clientCsvWebApiSwagger.PostAsync(new Job
+            {
+                Id = 2340,
+                Description = "created using the NSwag generated code",
+                Level = "amazing",
+                Requirements = "Json nugetg package",
+                Title = "NSwag generate"
+            });
+
+            all = await clientCsvWebApiSwagger.GetAllAsync();
+
+            Console.WriteLine($"amount of jobs: {all.Count}");
             Console.ReadLine();
 
         }
