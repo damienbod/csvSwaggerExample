@@ -53,8 +53,6 @@ namespace CsvWebApiSwagger
                 c.IncludeXmlComments(xmlPath);
             });
 
-            
-
             services.AddMvc(options =>
             {
                 options.InputFormatters.Add(new CsvInputFormatter(csvFormatterOptions));
