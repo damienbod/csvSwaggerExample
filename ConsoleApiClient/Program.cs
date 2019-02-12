@@ -13,7 +13,9 @@ namespace ConsoleApiClient
             Console.WriteLine("begin...");
 
             HttpClient httpClient = new HttpClient();
-            var clientCsvWebApiSwagger = new Client("https://localhost:44354/", httpClient);
+
+            var clientCsvWebApiSwagger = new ClientCsvWebApiSwagger(
+                "https://localhost:44354/", httpClient);
 
             // Gets all to-dos from the API
             var all = await clientCsvWebApiSwagger.GetAllAsync();
