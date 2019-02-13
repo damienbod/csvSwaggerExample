@@ -2,6 +2,7 @@
 
 Auto Generated .NET API Clients using NSwag and Swashbuckle Swagger
 
+https://damienbod.com/2019/02/13/auto-generated-net-api-clients-using-nswag-and-swashbuckle-swagger/
 
 ## History
 
