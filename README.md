@@ -21,3 +21,5 @@ https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swas
 https://github.com/RSuter/NSwag/wiki/NSwagStudio
 
 https://swagger.io/
+
+https://github.com/dmitry-pavlov/openapi-connected-service
