@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using System.Linq;
 using System.Reflection;
 using System;
+using Microsoft.Extensions.Hosting;
 
 namespace CsvWebApiSwagger
 {
