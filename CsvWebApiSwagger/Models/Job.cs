@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 
 namespace CsvWebApiSwagger.Models
 {
@@ -12,5 +11,9 @@ namespace CsvWebApiSwagger.Models
         public string Description { get; set; }
         public string Level { get; set; }
         public string Requirements { get; set; }
+
+        [EnumDataType(typeof(JobType))]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public JobType JobType { get; set; }
     }
 }
