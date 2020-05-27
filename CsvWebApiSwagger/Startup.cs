@@ -12,6 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Converters;
 
 namespace CsvWebApiSwagger
 {
@@ -47,6 +48,7 @@ namespace CsvWebApiSwagger
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+                c.SchemaFilter<EnumSchemaFilter>();
             });
 
             services.AddMvc(options =>
@@ -54,7 +56,9 @@ namespace CsvWebApiSwagger
                 options.InputFormatters.Add(new CsvInputFormatter(csvFormatterOptions));
                 options.OutputFormatters.Add(new CsvOutputFormatter(csvFormatterOptions));
                 options.FormatterMappings.SetMediaTypeMappingForFormat("csv", MediaTypeHeaderValue.Parse("text/csv"));
-            });
+            }).AddNewtonsoftJson(options =>
+                options.SerializerSettings.Converters.Add(new StringEnumConverter())
+            );
 
         }
 

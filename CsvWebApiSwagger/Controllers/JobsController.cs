@@ -149,7 +149,8 @@ namespace CsvWebApiSwagger.Controllers
                 Title = "Senior Software Engineer ASP.NET Core",
                 Description = "knows how to do a stack overflow search",
                 Level = "Level 3",
-                Requirements = "5 years experience using some of the following: ASP.NET Core, ASP.NET, C#, HTML, Javascript, Typescript, SignalR, Azure"
+                Requirements = "5 years experience using some of the following: ASP.NET Core, ASP.NET, C#, HTML, Javascript, Typescript, SignalR, Azure",
+                JobType = JobType.CodeMonkey
             },
             new Job
             {
@@ -157,7 +158,8 @@ namespace CsvWebApiSwagger.Controllers
                 Title = "Professional Software Engineer ASP.NET Core",
                 Description = "knows how to do a stack overflow search",
                 Level = "Level 2",
-                Requirements = "3 years experience using some of the following: ASP.NET Core, ASP.NET, C#, HTML, Javascript, Typescript, SignalR, Azure"
+                Requirements = "3 years experience using some of the following: ASP.NET Core, ASP.NET, C#, HTML, Javascript, Typescript, SignalR, Azure",
+                JobType = JobType.ITperson
             },
             new Job
             {
@@ -165,7 +167,8 @@ namespace CsvWebApiSwagger.Controllers
                 Title = "Junior Software Engineer ASP.NET Core",
                 Description = "knows how to do a stack overflow search",
                 Level = "Level 1",
-                Requirements = "knows some of the following: ASP.NET Core, ASP.NET, C#, HTML, Javascript, Typescript, SignalR, Azure, worked in a team"
+                Requirements = "knows some of the following: ASP.NET Core, ASP.NET, C#, HTML, Javascript, Typescript, SignalR, Azure, worked in a team",
+                JobType = JobType.PdfGuy
             }
         };
 
